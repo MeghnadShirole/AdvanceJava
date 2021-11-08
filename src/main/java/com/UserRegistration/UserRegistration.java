@@ -16,56 +16,86 @@ public class UserRegistration {
         password("passW@rd3");
         testForValidEmails();
     }
-    public static void firstName(String firstName) {
+    public static String firstName(String firstName) {
         Pattern pattern = Pattern.compile("^[A-Z][a-z]{2,}$");
         Matcher match = pattern.matcher(firstName);
         if(match.find() && match.group().equals(firstName)) {
             System.out.println("valid FirstName");
+            System.out.println(analyseMood("Happy"));
+            System.out.println("==================");
+            return "Happy";
         }
         else {
             System.out.println("invalid FirstName");
+            System.out.println(analyseMood("Sad"));
+            System.out.println("==================");
         }
+        return "Sad";
     }
-    public static void lastName(String lastName) {
+
+    public static String lastName(String lastName) {
         Pattern pattern = Pattern.compile("^[A-Z][a-z]{2,}$");
         Matcher match = pattern.matcher(lastName);
         if(match.find() && match.group().equals(lastName)) {
             System.out.println("valid LastName");
+            System.out.println(analyseMood("Happy"));
+            System.out.println("==================");
+            return "Happy";
         }
         else {
-            System.out.println("invalid lastName");
+            System.out.println("invalid LastName");
+            System.out.println(analyseMood("Sad"));
+            System.out.println("==================");
         }
+        return "Sad";
     }
-    public static void emailId(String emailId) {
+    public static String emailId(String emailId) {
         Pattern pattern = Pattern.compile("^[a-zA-Z0-9+_.-]*[a-zA-Z0-9]?@[a-zA-Z0-9]+.([.][a-zA-Z]+)+$");
         Matcher match = pattern.matcher(emailId);
         if(match.find() && match.group().equals(emailId)) {
             System.out.println("valid Email");
+            System.out.println(analyseMood("Happy"));
+            System.out.println("==================");
+            return "Happy";
         }
         else {
             System.out.println("invalid Email");
+            System.out.println(analyseMood("Sad"));
+            System.out.println("==================");
         }
+        return "Sad";
     }
-    public static void phoneNumber(String mobileNumber) {
+    public static String phoneNumber(String mobileNumber) {
         Pattern pattern = Pattern.compile("^(\\d{1,2}?)[- .]?\\d{9,10}$");
         Matcher match = pattern.matcher(mobileNumber);
         if(match.find() && match.group().equals(mobileNumber)) {
             System.out.println("valid phoneNumber");
+            System.out.println(analyseMood("Happy"));
+            System.out.println("==================");
+            return "Happy";
         }
         else {
             System.out.println("invalid phoneNumber");
+            System.out.println(analyseMood("Sad"));
+            System.out.println("==================");
         }
+        return "Sad";
     }
-    public static void password(String password) {
+    public static String password(String password) {
         Pattern pattern = Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$");
         Matcher match = pattern.matcher(password);
         if(match.find() && match.group().equals(password)) {
             System.out.println("valid password");
+            System.out.println(analyseMood("Happy"));
+            System.out.println("==================");
+            return "Happy";
         }
         else {
             System.out.println("invalid password");
+            System.out.println(analyseMood("Sad"));
+            System.out.println("==================");
         }
-        System.out.println("==================");
+        return "Sad";
     }
     static String[] validEmails = {"abc@yahoo.com", "abc-100@yahoo.com", "abc.100@yahoo.com",
             "abc111@abc.com", "abc-100@abc.net", "abc.100@abc.com.au",
@@ -76,16 +106,27 @@ public class UserRegistration {
             "abc@abc@gmail.com", "abc@gmail.com.1a", "abc@gmail.com.aa.au"};
 
     public static void testForValidEmails() {
+        System.out.println("==================");
         System.out.println("EmailId Check\n");
-        for (int i = 0; i < validEmails.length; i++) {
+        for (String validEmail : validEmails) {
             Pattern pattern = Pattern.compile("^[a-zA-Z-9]+([._+-]*[0-9A-Za-z]+)*@[a-zA-Z0-9]+.[a-zA-Z]{2,4}([.][a-z]{2,4})?$");
-            Matcher match = pattern.matcher(validEmails[i]);
-            if(match.matches())
-            {
-                System.out.println(validEmails[i]+" --> Is Valid");
+            Matcher match = pattern.matcher(validEmail);
+            if (match.matches()) {
+                System.out.println(validEmail + " --> Is Valid");
             } else {
-                System.out.println(validEmails[i]+" --> Is Invalid");
+                System.out.println(validEmail + " --> Is Invalid");
             }
+        }
+    }
+    /*
+     *Mood Analyser For Valid and Invalid Entries
+    */
+    public static String analyseMood(String message) {
+        if(message.contains("Happy")) {
+            return "Entry Successful";
+        }
+        else {
+            return "Entry Failed";
         }
     }
 }

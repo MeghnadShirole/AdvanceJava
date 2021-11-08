@@ -1,0 +1,33 @@
+invalid phoneNumber
+Entry Failed
+==================
+valid FirstName
+Entry Successful
+==================
+invalid FirstName
+Entry Failed
+==================
+valid password
+Entry Successful
+==================
+valid Email
+Entry Successful
+==================
+invalid password
+Entry Failed
+==================
+invalid Email
+Entry Failed
+==================
+	valid LastName
+	Entry Successful
+	==================
+
+valid phoneNumber
+
+Entry Successful
+
+==================
+invalid LastName
+Entry Failed
+==================
