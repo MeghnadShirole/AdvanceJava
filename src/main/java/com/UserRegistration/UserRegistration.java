@@ -9,6 +9,11 @@ public class UserRegistration {
         lastName("Shirole");
         emailId("shirolemeghnad10@gmail.com");
         phoneNumber("919890964596");
+        /*
+        *User need to  follow pre-defined  Password rules.
+        *Rule1 – minimum 8  Characters
+        */
+        password("asdfghjk");
     }
     public static void firstName(String firstName) {
         Pattern pattern = Pattern.compile("^[A-Z][a-z]{2,}$");
@@ -48,6 +53,16 @@ public class UserRegistration {
         }
         else {
             System.out.println("invalid phoneNumber");
+        }
+    }
+    public static void password(String password) {
+        Pattern pattern = Pattern.compile("^[a-zA-z]{8}$");
+        Matcher match = pattern.matcher(password);
+        if(match.find() && match.group().equals(password)) {
+            System.out.println("valid password");
+        }
+        else {
+            System.out.println("invalid password");
         }
     }
 }
