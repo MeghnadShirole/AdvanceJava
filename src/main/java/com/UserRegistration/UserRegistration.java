@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 public class UserRegistration {
     public static void main(String[] args) {
         firstName("Meghnad");
+        lastName("Shirole");
     }
     public static void firstName(String firstName) {
         Pattern pattern = Pattern.compile("^[A-Z][a-z]{2,}$");
@@ -15,6 +16,16 @@ public class UserRegistration {
         }
         else {
             System.out.println("invalid FirstName");
+        }
+    }
+    public static void lastName(String lastName) {
+        Pattern pattern = Pattern.compile("^[A-Z][a-z]{2,}$");
+        Matcher match = pattern.matcher(lastName);
+        if(match.find() && match.group().equals(lastName)) {
+            System.out.println("valid LastName");
+        }
+        else {
+            System.out.println("invalid lastName");
         }
     }
 }
