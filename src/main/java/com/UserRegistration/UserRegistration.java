@@ -11,12 +11,12 @@ public class UserRegistration {
         phoneNumber("919890964596");
         /*
         *User need to  follow pre-defined  Password rules.
-        *Rule1 – minimum 8  Characters
+        *Rule2 – minimum 8 Characters and at least 1 should be uppercase
         */
-        password("asdfghjk");
+        password("passWord");
     }
     public static void firstName(String firstName) {
-        Pattern pattern = Pattern.compile("^[A-Z][a-z]{2,}$");
+        Pattern pattern = Pattern.compile("^(?=.*[A-Za-z])[A-Za-z]{8,}$");
         Matcher match = pattern.matcher(firstName);
         if(match.find() && match.group().equals(firstName)) {
             System.out.println("valid FirstName");
@@ -56,7 +56,7 @@ public class UserRegistration {
         }
     }
     public static void password(String password) {
-        Pattern pattern = Pattern.compile("^[a-zA-z]{8}$");
+        Pattern pattern = Pattern.compile("^(?=.*[A-Za-z])[A-Za-z]{8,}$");
         Matcher match = pattern.matcher(password);
         if(match.find() && match.group().equals(password)) {
             System.out.println("valid password");
