@@ -7,6 +7,7 @@ public class UserRegistration {
     public static void main(String[] args) {
         firstName("Meghnad");
         lastName("Shirole");
+        emailId("shirolemeghnad10@gmail.com");
     }
     public static void firstName(String firstName) {
         Pattern pattern = Pattern.compile("^[A-Z][a-z]{2,}$");
@@ -26,6 +27,16 @@ public class UserRegistration {
         }
         else {
             System.out.println("invalid lastName");
+        }
+    }
+    public static void emailId(String emailId) {
+        Pattern pattern = Pattern.compile("^[a-zA-Z0-9+_.-]*[a-zA-Z0-9]?@[a-zA-Z0-9]+.([.][a-zA-Z]+)+$");
+        Matcher match = pattern.matcher(emailId);
+        if(match.find() && match.group().equals(emailId)) {
+            System.out.println("valid Email");
+        }
+        else {
+            System.out.println("invalid Email");
         }
     }
 }
