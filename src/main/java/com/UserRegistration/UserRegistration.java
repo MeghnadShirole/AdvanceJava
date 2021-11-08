@@ -8,6 +8,7 @@ public class UserRegistration {
         firstName("Meghnad");
         lastName("Shirole");
         emailId("shirolemeghnad10@gmail.com");
+        phoneNumber("919890964596");
     }
     public static void firstName(String firstName) {
         Pattern pattern = Pattern.compile("^[A-Z][a-z]{2,}$");
@@ -37,6 +38,16 @@ public class UserRegistration {
         }
         else {
             System.out.println("invalid Email");
+        }
+    }
+    public static void phoneNumber(String mobileNumber) {
+        Pattern pattern = Pattern.compile("^(\\d{1,2}?)[- .]?\\d{9,10}$");
+        Matcher match = pattern.matcher(mobileNumber);
+        if(match.find() && match.group().equals(mobileNumber)) {
+            System.out.println("valid phoneNumber");
+        }
+        else {
+            System.out.println("invalid phoneNumber");
         }
     }
 }
