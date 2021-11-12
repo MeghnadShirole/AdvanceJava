@@ -14,7 +14,7 @@ public class UserRegistration {
         *Rule4 – minimum 8 Characters and at least 1 special character
         */
         password("passW@rd3");
-        testForValidEmails();
+//        testForValidEmails();
     }
     public static String firstName(String firstName) {
         Pattern pattern = Pattern.compile("^[A-Z][a-z]{2,}$");
@@ -105,7 +105,7 @@ public class UserRegistration {
             "abc@%*.com", "abc..2002@gmail.com", "abc.@gmail.com",
             "abc@abc@gmail.com", "abc@gmail.com.1a", "abc@gmail.com.aa.au"};
 
-    public static void testForValidEmails() {
+    public static boolean testForValidEmails(String emailIds) {
         System.out.println("==================");
         System.out.println("EmailId Check\n");
         for (String validEmail : validEmails) {
@@ -113,10 +113,13 @@ public class UserRegistration {
             Matcher match = pattern.matcher(validEmail);
             if (match.matches()) {
                 System.out.println(validEmail + " --> Is Valid");
-            } else {
+            return true;
+            }
+            else {
                 System.out.println(validEmail + " --> Is Invalid");
             }
         }
+        return false;
     }
     /*
      *Mood Analyser For Valid and Invalid Entries
