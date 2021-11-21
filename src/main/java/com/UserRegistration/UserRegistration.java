@@ -17,122 +17,74 @@ public class UserRegistration {
         userRegistration.password(scanner.next());
     }
 
-        public String firstName(String firstName) throws UserRegistrationException{
-            //regex pattern
-            String regex = "^[A-Z][a-z]{2,}$";
-            try{
-                Pattern pattern = Pattern.compile(regex);
-
-                //checking input is empty or not
-                if(firstName.isEmpty())
-                    throw new UserRegistrationException("Please enter valid First Name!");
-                Matcher matcher = pattern.matcher(firstName);
-                if(matcher.matches()) {
-                    System.out.println("valid Firstname");
-                    System.out.println(analyseMood("Happy"));
-                    return "Happy";
-                }
-                else {
-                    return "Sad";
-                }
-            } catch(Exception e) {
-                throw new UserRegistrationException("Please enter valid First Name!");
+        public boolean firstName(String firstName) throws UserRegistrationException{
+            try {
+                UserValidate<String> obj = (fn) -> {
+                    String regex = "^[A-Z][a-z]{2,}$";
+                    Pattern pattern = Pattern.compile(regex);
+                    Matcher matcher = pattern.matcher(fn);
+                    return matcher.matches();
+                };
+                return obj.validate(firstName);
+            } catch (NullPointerException exception) {
+                throw new UserRegistrationException("Invalid input");
             }
         }
 
-        public String lastName(String lastName) throws UserRegistrationException{
-            //regex pattern
-            String regex = "^[A-Z][a-z]{2,}$";
+        public boolean lastName(String lastName) throws UserRegistrationException{
             try {
-                Pattern pattern = Pattern.compile(regex);
+                UserValidate<String> obj = (ln) -> {
+                    String regex = "^[a-zA-Z]*$";
+                    Pattern pattern = Pattern.compile(regex);
+                    Matcher matcher = pattern.matcher(ln);
+                    return matcher.matches();
+                };
+                return obj.validate(lastName);
 
-                //checking input is empty or not
-                if(lastName.isEmpty())
-                    throw new UserRegistrationException("Please enter valid Last Name!");
-
-                Matcher matcher = pattern.matcher(lastName);
-                if(matcher.matches()) {
-                    System.out.println("valid Lastname");
-                    System.out.println(analyseMood("Happy"));
-                    return "Happy";
-                }
-                else {
-                    return "Sad";
-                }
-            } catch(UserRegistrationException e) {
-                throw new UserRegistrationException("Please enter valid Last Name!" );
+            } catch (NullPointerException exception) {
+                throw new UserRegistrationException("Invalid input");
             }
         }
 
-        public String emailId(String emailId) throws UserRegistrationException {
-            //regex pattern
-            String regex = "^[a-zA-Z0-9]+([._+-][0-9A-Za-z]+)*@[a-zA-Z0-9]+.[a-zA-Z]{2,4}([.][a-z]{2,4})?$";
+        public boolean emailId(String emailId) throws UserRegistrationException {
             try {
-                Pattern pattern = Pattern.compile(regex);
-
-                //checking input is empty or not
-                if(emailId.isEmpty())
-                    throw new UserRegistrationException("Please enter valid Email ID!");
-
-                Matcher matcher = pattern.matcher(emailId);
-                if(matcher.matches()) {
-                    System.out.println("valid EmailId");
-                    System.out.println(analyseMood("Happy"));
-                    return "Happy";
-                }
-                else {
-                    return "Sad";
-                }
-            } catch(UserRegistrationException e) {
-                throw new UserRegistrationException("Please enter valid Email ID!");
+                UserValidate<String> obj = (em) -> {
+                    String regex = "^[a-z0-9]+([_+-.][0-9a-z]+)*@[a-z0-9]+.(com|net)(.[a-z]{2,3})?$";
+                    Pattern pattern = Pattern.compile(regex);
+                    Matcher matcher = pattern.matcher(em);
+                    return matcher.matches();
+                };
+                return obj.validate(emailId);
+            } catch (NullPointerException exception) {
+                throw new UserRegistrationException("Invalid input");
             }
         }
 
-        public String phoneNumber(String mobNum) throws UserRegistrationException {
-            //regex pattern
-            String regex = "^[0-9]{1,3}-[0-9]{10}$";
+        public boolean phoneNumber(String mobNum) throws UserRegistrationException {
             try {
-                Pattern pattern = Pattern.compile(regex);
-
-                //checking input is empty or not
-                if(mobNum.isEmpty())
-                    throw new UserRegistrationException("Please enter valid Mobile Number!");
-
-                Matcher matcher = pattern.matcher(mobNum);
-                if(matcher.matches()) {
-                    System.out.println("valid PhoneNumber ");
-                    System.out.println(analyseMood("Happy"));
-                    return "Happy";
-                }
-                else {
-                    return "Sad";
-                }
-            } catch(UserRegistrationException e) {
-                throw new UserRegistrationException("Please enter valid Mobile Number!");
+                UserValidate<String> obj = (pn) -> {
+                    String regex = "^(?:(?:\\+|0{0,2})91(\\s*[\\-]\\s*)?|[0]?)?[789]\\d{9}$";
+                    Pattern pattern = Pattern.compile(regex);
+                    Matcher matcher = pattern.matcher(pn);
+                    return matcher.matches();
+                };
+                return obj.validate(mobNum);
+            } catch (NullPointerException exception) {
+                throw new UserRegistrationException("Invalid input");
             }
         }
 
-        public String password(String password) throws UserRegistrationException {
-            //regex pattern
-            String regex = "^[a-z](?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=]).{8,}$";
+        public boolean password(String password) throws UserRegistrationException {
             try {
-                Pattern pattern = Pattern.compile(regex);
-
-                //checking input is empty or not
-                if(password.isEmpty())
-                    throw new UserRegistrationException("Please enter valid Password!");
-
-                Matcher matcher = pattern.matcher(password);
-                if(matcher.matches()) {
-                    System.out.println("valid Password");
-                    System.out.println(analyseMood("Happy"));
-                    return "Happy";
-                }
-                else {
-                    return "Sad";
-                }
-            } catch(UserRegistrationException e) {
-                throw new UserRegistrationException("Please enter valid Password!");
+                UserValidate<String> obj = (ps) -> {
+                    String regex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8,20}$";
+                    Pattern pattern = Pattern.compile(regex);
+                    Matcher matcher = pattern.matcher(ps);
+                    return matcher.matches();
+                };
+                return obj.validate(password);
+            } catch (NullPointerException exception) {
+                throw new UserRegistrationException("Invalid input");
             }
         }
 
